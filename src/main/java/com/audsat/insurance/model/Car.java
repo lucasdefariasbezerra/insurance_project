@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "model")
@@ -22,8 +21,20 @@ public class Car {
     @Column(name = "fipe_value")
     private Double fipeValue;
 
+
     public Integer getId() {
         return id;
+    }
+
+    public Car() {
+    }
+
+    public Car(Integer id, String model, String manufacturer, String year, Double fipeValue) {
+        this.id = id;
+        this.model = model;
+        this.manufacturer = manufacturer;
+        this.year = year;
+        this.fipeValue = fipeValue;
     }
 
     public void setId(Integer id) {

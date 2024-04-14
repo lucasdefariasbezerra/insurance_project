@@ -1,7 +1,11 @@
 package com.audsat.insurance.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.time.Instant;
 import java.util.Date;
 
 @Entity
@@ -22,11 +26,13 @@ public class Insurance {
 
     @Column(name = "creation_dt")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDt;
+    @CreationTimestamp
+    private Instant creationDt;
 
     @Column(name = "updated_dt")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedDt;
+    @UpdateTimestamp
+    private Instant updatedDt;
 
     @Column(name = "is_active")
     private Boolean isActive;
@@ -53,22 +59,6 @@ public class Insurance {
 
     public void setCar(Car car) {
         this.car = car;
-    }
-
-    public Date getCreationDt() {
-        return creationDt;
-    }
-
-    public void setCreationDt(Date creationDt) {
-        this.creationDt = creationDt;
-    }
-
-    public Date getUpdatedDt() {
-        return updatedDt;
-    }
-
-    public void setUpdatedDt(Date updatedDt) {
-        this.updatedDt = updatedDt;
     }
 
     public Boolean getActive() {

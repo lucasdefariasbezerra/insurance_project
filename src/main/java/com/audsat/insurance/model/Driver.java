@@ -15,6 +15,17 @@ public class Driver {
     @Column(name = "birthdate")
     private String birthdate;
 
+    @Transient
+    private Boolean isMain;
+
+    public Driver() {
+    }
+
+    public Driver(String document, String birthdate) {
+        this.document = document;
+        this.birthdate = birthdate;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -37,5 +48,13 @@ public class Driver {
 
     public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public Boolean getMain() {
+        return isMain;
+    }
+
+    public void setMain(Boolean main) {
+        isMain = main;
     }
 }

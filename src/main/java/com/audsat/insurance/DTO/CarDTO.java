@@ -10,6 +10,10 @@ public class CarDTO {
     public CarDTO() {
     }
 
+    public CarDTO(Integer carId) {
+        this.carId = carId;
+    }
+
     public CarDTO(Integer carId, String model, String manufacturer, String year, Double fipeValue) {
         this.carId = carId;
         this.model = model;

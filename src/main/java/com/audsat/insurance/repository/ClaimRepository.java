@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClaimRepository extends JpaRepository<Claim, Integer> {
+    int countByCarId(Integer id);
+    int countByDriverDocument(String document);
 }

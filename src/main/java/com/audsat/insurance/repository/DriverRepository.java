@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface DriverRepository extends JpaRepository<Driver, Integer> {
     Optional<Driver> findOneByDocument(String document);
+    int countByDocument(String document);
 }

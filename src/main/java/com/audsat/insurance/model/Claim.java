@@ -23,6 +23,14 @@ public class Claim {
     @Column(name = "event_date")
     private Date eventDate;
 
+    public Claim() {
+    }
+
+    public Claim(Driver driver, Car car, Date eventDate) {
+        this.driver = driver;
+        this.car = car;
+        this.eventDate = eventDate;
+    }
 
     public Integer getId() {
         return id;

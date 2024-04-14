@@ -3,6 +3,7 @@ package com.audsat.insurance.DTO;
 public class DriverDTO {
     private String document;
     private String birthDate;
+    private Boolean isMain;
 
 
     public DriverDTO() {
@@ -13,12 +14,24 @@ public class DriverDTO {
         this.birthDate = birthDate;
     }
 
+    public DriverDTO(String document) {
+        this.document = document;
+    }
+
     public String getDocument() {
         return document;
     }
 
     public void setDocument(String document) {
         this.document = document;
+    }
+
+    public Boolean getIsMain() {
+        return isMain;
+    }
+
+    public void setMain(Boolean main) {
+        isMain = main;
     }
 
     public String getBirthDate() {
