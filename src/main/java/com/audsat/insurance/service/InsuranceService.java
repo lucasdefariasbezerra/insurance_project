@@ -64,8 +64,8 @@ public class InsuranceService {
 
         Double fipeValue = insurance.getCar().getFipeValue();
         Double finalVal = fipeValue * 0.06;
-        finalVal = handleDriverAge(insurance, finalVal, fipeValue);
-        finalVal = handleClaims(insurance, finalVal, fipeValue);
+        finalVal += handleDriverAge(insurance, finalVal, fipeValue);
+        handleClaims(insurance, finalVal, fipeValue);
 
         BudgetReportDTO reportDTO = new BudgetReportDTO();
         reportDTO.setCarModel(insurance.getCar().getModel());
@@ -78,7 +78,7 @@ public class InsuranceService {
 
     private double handleDriverAge(Insurance insurance, Double value, Double fipeValue) {
         CarDrive carDrive = carDriverRepository.findFirstByCarIdAndIsMainDriver(insurance.getCar().getId(), true);
-        double finalValue = value;
+        double finalValue = 0D;
         DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate birthDate = LocalDate.parse(carDrive.getDriver().getBirthdate(), df);
         LocalDate current = LocalDate.now();
@@ -94,17 +94,17 @@ public class InsuranceService {
         List<Driver> drivers = carDriverRepository.findByCarId(insurance.getCar().getId())
                 .stream().map(CarDrive::getDriver)
                 .toList();
-
+        double finalVal = 0;
 
         if (claimService.isClaimFoundOnDrivers(drivers)) {
-           value += (fipeValue * 0.02);
+           finalVal = value + (fipeValue * 0.02);
         }
 
         if (claimService.isClaimFoundOnCar(insurance.getCar())) {
-            value +=  fipeValue * 0.02;
+            finalVal +=  fipeValue * 0.02;
         }
 
-        return value;
+        return finalVal;
     }
 
     private void handleCarDriverAssociationPersistence(List<Driver> persistedDrivers, Car persistedCar) {
